@@ -1,0 +1,1 @@
+Hey guys if you are seeing this it means you have successfully installed git and have pulled the repo to your local machine. Tadarrrrr! :D
