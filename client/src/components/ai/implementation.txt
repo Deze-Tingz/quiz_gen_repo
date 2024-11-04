@@ -1,0 +1,3 @@
+The ai implementation will have to be in python as that is the language that can communicate with the api we plan to use 
+The front end applcation that delivers the context to the python section can be writen in javascript tho
+We cna figure this out later

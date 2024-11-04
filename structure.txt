@@ -1,0 +1,67 @@
+quiz-app/
+├── client/                      # Frontend application
+│   ├── public/                  # Static files
+│   │   ├── index.html
+│   │   └── assets/             # Images, fonts, etc.
+│   ├── src/
+│   │   ├── components/         # Reusable UI components
+│   │   │   ├── common/        # Shared components
+│   │   │   │   ├── Button.js
+│   │   │   │   ├── Input.js
+│   │   │   │   └── Card.js
+│   │   │   ├── auth/          # Authentication components
+│   │   │   │   ├── Login.js
+│   │   │   │   └── Register.js
+│   │   │   ├── flashcards/    # Flashcard-related components
+│   │   │   │   ├── CardCreator.js
+│   │   │   │   ├── CardList.js
+│   │   │   │   └── StudyMode.js
+│   │   │   └── ai/           # AI-related components
+│   │   │       └── QuestionGenerator.js
+│   │   ├── pages/            # Full pages
+│   │   │   ├── Home.js
+│   │   │   ├── Dashboard.js
+│   │   │   └── Study.js
+│   │   ├── services/         # API calls and business logic
+│   │   │   ├── api.js        # API configuration
+│   │   │   ├── authService.js
+│   │   │   └── aiService.js
+│   │   ├── utils/            # Helper functions
+│   │   │   └── validators.js
+│   │   ├── styles/           # CSS/styling files
+│   │   └── App.js           # Main application component
+│   ├── package.json
+│   └── README.md
+│
+├── server/                    # Backend application
+│   ├── src/
+│   │   ├── config/          # Configuration files
+│   │   │   ├── database.js
+│   │   │   └── auth.js
+│   │   ├── controllers/     # Request handlers
+│   │   │   ├── userController.js
+│   │   │   ├── cardController.js
+│   │   │   └── aiController.js
+│   │   ├── models/         # Database models
+│   │   │   ├── User.js
+│   │   │   ├── Card.js
+│   │   │   └── Deck.js
+│   │   ├── routes/         # API routes
+│   │   │   ├── userRoutes.js
+│   │   │   ├── cardRoutes.js
+│   │   │   └── aiRoutes.js
+│   │   ├── middleware/     # Custom middleware
+│   │   │   ├── auth.js
+│   │   │   └── errorHandler.js
+│   │   ├── services/       # Business logic
+│   │   │   ├── aiService.js
+│   │   │   └── cardService.js
+│   │   └── app.js         # Main application file
+│   ├── package.json
+│   └── README.md
+│
+├── .gitignore
+├── README.md
+└── package.json             # Root package.json for project-wide scripts
+//Took an uneccecary amount of time to make this look pretty
+^-- jk claude did

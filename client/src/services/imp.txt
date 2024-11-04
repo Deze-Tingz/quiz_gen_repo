@@ -1,0 +1,5 @@
+I am unsure if the clien tside has to process any of this or make any api calls
+I think the way we should handle those is to send them first to our servers and then back to them though that might be 
+significantly slower
+We will see for know lets get a simple app running
+"YAY AGILE"
