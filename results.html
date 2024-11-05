@@ -1,0 +1,50 @@
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <title>QuizGen</title>
+    <link rel="stylesheet" href = "style.css"></link>
+    <script src="https://kit.fontawesome.com/053905a0e0.js" 
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+</head>
+<body>
+    <section class="header">
+ <nav>
+    
+    <div class="nav-links" id="navLinks">
+       
+        <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+            <li><a href = "./index.html">Home</a></li>
+            <li><a href = "./contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <i class="fa fa-bars" onclick="showMenu()"></i>
+</nav>
+
+<div class="row">
+    <div class="services-col">
+        <h3>You Scored</h3>
+            <h3> 1/1 </h3>
+           
+            <button class="again-btn"
+        onclick="location.href='./index.html'"><span></span>Try Again</button>
+           
+        </div> 
+
+    </div>
+
+<script src="script.js"></script>
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        
+        function showMenu(){
+            navLinks.style.left = "0";
+        }
+        function hideMenu(){
+            navLinks.style.left = "-200px";
+        }
+    </script>
+   
+</body>
+</html

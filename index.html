@@ -1,0 +1,84 @@
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <title>QuizGen</title>
+    <link rel="stylesheet" href = "style.css"></link>
+    <script src="https://kit.fontawesome.com/053905a0e0.js" 
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+</head>
+<body>
+    <section class="header">
+ <nav>
+    
+    <div class="nav-links" id="navLinks">
+       
+        <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+            <li><a href = "./index.html">Home</a></li>
+            <li><a href = "./contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <i class="fa fa-bars" onclick="showMenu()"></i>
+</nav>
+
+    <div class = "content">
+        <h1>QuizGen</h1>
+        <p>Create your quiz!</p>
+        
+            <form action="font-handler.php" method="post">
+                <div class="input-container">
+                <input type="text" name="name" placeholder="Enter Prompt" required>
+                <div class="dropdown">
+                    <select name="options" required>
+                        <option value="" disabled selected># of Questions</option>
+                        <option value="option1">1</option>
+                        <option value="option2">2</option>
+                        <option value="option4">4</option>
+                        <option value="option5">5</option>
+                        <option value="option6">6</option>
+                        <option value="option7">7</option>
+                        <option value="option8">8</option>
+                        <option value="option9">9</option>
+                        <option value="option10">10</option>
+                    </select>
+                    <select name="options" required>
+                        <option value="" disabled selected>Difficulty</option>
+                        <option value="option1">Low</option>
+                        <option value="option2">Medium</option>
+                        <option value="option3">High</option>
+                    </select>
+                   
+                    
+                </div>
+            </div>
+                  
+        </form>
+
+        <div>
+            
+        <button class="button"
+        onclick="location.href='./quiz.html'"><span></span>START</button>
+
+    </div>
+
+
+
+
+
+    </div>
+
+<script src="script.js"></script>
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        
+        function showMenu(){
+            navLinks.style.left = "0";
+        }
+        function hideMenu(){
+            navLinks.style.left = "-200px";
+        }
+    </script>
+   
+</body>
+</html

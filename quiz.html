@@ -1,0 +1,55 @@
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <title>QuizGen</title>
+    <link rel="stylesheet" href = "style.css"></link>
+    <script src="https://kit.fontawesome.com/053905a0e0.js" 
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+</head>
+<body>
+    <section class="header">
+ <nav>
+    
+    <div class="nav-links" id="navLinks">
+       
+        <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+            <li><a href = "./index.html">Home</a></li>
+            <li><a href = "./contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <i class="fa fa-bars" onclick="showMenu()"></i>
+</nav>
+
+<div class="row">
+    <div class="services-col">
+        <h3>Question 1</h3>
+        <div class="quiz-container">
+            <div class="question">What is the capital of France?</div>
+            <div class="answers">
+                <label><input type="radio" name="q1" value="A"> A) Berlin</label>
+                <label><input type="radio" name="q1" value="B"> B) Madrid</label>
+                <label><input type="radio" name="q1" value="C"> C) Paris</label>
+                <label><input type="radio" name="q1" value="D"> D) Rome</label>
+            </div>
+            
+            <button class="submit-btn2">Previous</button> 
+            <button class="submit-btn2">Next</button>             
+            <button class="submit-btn2"
+        onclick="location.href='./results.html'"><span></span>Submit</button>
+    </div>
+    
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        
+        function showMenu(){
+            navLinks.style.left = "0";
+        }
+        function hideMenu(){
+            navLinks.style.left = "-200px";
+        }
+    </script>
+   
+</body>
+</html
