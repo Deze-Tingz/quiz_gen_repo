@@ -41,36 +41,127 @@
         }
 
         function formatQuiz(quizText) {
-            const questions = quizText.split(/\d+\./).filter(q => q.trim());
+            // Extract title and instructions
+            const lines = quizText.split('\n').filter(line => line.trim());
+            let title = 'Quiz';
+            let instructions = '';
             
-            return questions.map((question, index) => {
-                const parts = question.split('\n').filter(line => line.trim());
-                
-                let questionHtml = `
-                    <div class="question">
-                        <div class="question-text">Question ${index + 1}:</div>
-                        <div class="question-text">${parts[0]}</div>
-                        <div class="options">
-                `;
-                
-                for (let i = 1; i < parts.length; i++) {
-                    if (parts[i].startsWith('A) ') || 
-                        parts[i].startsWith('B) ') || 
-                        parts[i].startsWith('C) ') || 
-                        parts[i].startsWith('D) ')) {
-                        questionHtml += `<div class="option">${parts[i]}</div>`;
-                    } else if (parts[i].includes('Answer:')) {
-                        questionHtml += `<div class="answer">${parts[i]}</div>`;
-                    }
+            // Find instructions and quiz sections
+            for (let line of lines) {
+                if (line.includes('**Instructions:**')) {
+                    instructions = line.replace('**Instructions:**', '').trim();
+                } else if (line.includes('**Quiz:**')) {
+                    title = 'Quiz';
                 }
-                
-                questionHtml += `
-                        </div>
+            }
+
+            // Extract answer key
+            const answerKeySection = quizText.split('**Answer Key:**')[1];
+            const answerKey = answerKeySection
+                .split('\n')
+                .filter(line => line.trim())
+                .reduce((acc, line) => {
+                    // Handle multiple choice, true/false, and fill-in-the-blank formats
+                    const mcMatch = line.match(/(\d+)\.\s+([a-d])\)/);
+                    const tfMatch = line.match(/(\d+)\.\s+(True|False)/i);
+                    const fbMatch = line.match(/(\d+)\.\s+(\w+)/);
+                    
+                    if (mcMatch) {
+                        acc[mcMatch[1]] = { type: 'mc', answer: mcMatch[2] };
+                    } else if (tfMatch) {
+                        acc[tfMatch[1]] = { type: 'tf', answer: tfMatch[2] };
+                    } else if (fbMatch) {
+                        acc[fbMatch[1]] = { type: 'fb', answer: fbMatch[2] };
+                    }
+                    return acc;
+                }, {});
+
+            let quizHtml = `
+                <div class="quiz-header">
+                    <h2>${title}</h2>
+                    <p>${instructions}</p>
+                </div>
+            `;
+
+            // Extract questions
+            const questions = quizText.split(/\d+\.\s+/)
+                .filter(q => q.trim())
+                .slice(1); // Skip the empty first element
+            
+            questions.forEach((question, index) => {
+                const questionNumber = (index + 1).toString();
+                const answerData = answerKey[questionNumber];
+                if (!answerData) return;
+
+                let questionText, options;
+
+                if (answerData.type === 'mc') {
+                    // Multiple choice format
+                    const questionParts = question.split('?');
+                    questionText = questionParts[0].trim() + '?';
+                    const optionsText = questionParts[1];
+                    options = optionsText.split(/[a-d]\)/)
+                        .slice(1)
+                        .map((opt, i) => ({
+                            letter: 'abcd'[i],
+                            text: opt.trim()
+                        }));
+                } else if (answerData.type === 'tf') {
+                    // True/False format
+                    questionText = question.trim();
+                    options = [
+                        { letter: 'True', text: '' },
+                        { letter: 'False', text: '' }
+                    ];
+                } else if (answerData.type === 'fb') {
+                    // Fill in the blank format
+                    questionText = question.trim();
+                    options = null;
+                }
+
+                quizHtml += `
+                    <div class="question">
+                        <div class="question-text">Question ${questionNumber}: ${questionText}</div>
+                        ${options ? `
+                            <div class="options">
+                                ${options.map(option => `
+                                    <div class="option" onclick="toggleAnswer(this)">
+                                        ${option.letter}${option.text ? ') ' + option.text : ''}
+                                        <div class="answer hidden">
+                                            ${option.letter === answerData.answer ? '✓ Correct!' : '✗ Incorrect'}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : `
+                            <div class="fill-blank">
+                                <input type="text" placeholder="Type your answer" class="blank-input">
+                                <button onclick="checkFillBlank(this, '${answerData.answer}')">Check</button>
+                                <div class="answer hidden"></div>
+                            </div>
+                        `}
                     </div>
                 `;
-                
-                return questionHtml;
-            }).join('');
+            });
+
+            return quizHtml;
+        }
+
+        function toggleAnswer(element) {
+            const answer = element.querySelector('.answer');
+            answer.classList.toggle('hidden');
+        }
+
+        function checkFillBlank(button, correctAnswer) {
+            const container = button.closest('.fill-blank');
+            const input = container.querySelector('input');
+            const answer = container.querySelector('.answer');
+            
+            const userAnswer = input.value.trim().toLowerCase();
+            const isCorrect = userAnswer === correctAnswer.toLowerCase();
+            
+            answer.textContent = isCorrect ? '✓ Correct!' : `✗ Incorrect. The answer is: ${correctAnswer}`;
+            answer.classList.remove('hidden');
         }
 
         var navLinks = document.getElementById("navLinks");
