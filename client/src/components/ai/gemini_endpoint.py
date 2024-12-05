@@ -26,7 +26,7 @@ def generate_quiz():
     difficulty = request.args.get('difficulty', 'medium')
     
     prompt_template = f"""Generate a {difficulty}-difficulty quiz about {prompt}. 
-    Please create {num_questions} questions, maximum. No more no less, even when its a combo. When its a combo, make some questions of one variety, and others of another variety, not a combo within the question, but not more than a total of {num_questions} questions. Everytime you do each kind of quiz make it in the exact same format (no cutesy lines, just instructions and the quiz, with the answer key (with all the answers) at the bottom. No matter the type, do not list the answers in the middle of the quiz. Also just include all of the instructions on top, not in the middle.)"""
+    Please create {num_questions} questions, maximum. No more no less, even when its a combo. When its a combo, make some questions of one variety, and others of another variety, not a combo within the question, but not more than a total of {num_questions} questions. Everytime you do each kind of quiz make it in the exact same format (no cutesy lines, just instructions and the quiz, with the answer key (with all the answers) at the bottom. No matter the type, do not list the answers in the middle of the quiz. Also just include all of the instructions on top, not in the middle of the quiz. Finally if the prompt is not a subject for a quiz, say "This is not a subject for a quiz. Please try again with a different prompt."""
     
     # Print what we're sending to Gemini
     print("\n=== Sending to Gemini ===")

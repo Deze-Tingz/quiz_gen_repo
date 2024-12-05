@@ -32,8 +32,14 @@
         window.onload = function() {
             const quiz = localStorage.getItem('currentQuiz');
             if (quiz) {
-                const formattedQuiz = formatQuiz(quiz);
-                document.getElementById('quizDisplay').innerHTML = formattedQuiz;
+                // Check for error message
+                if (quiz.includes("This is not a subject for a quiz")) {
+                    document.getElementById('quizDisplay').innerHTML = 
+                        '<div class="error-message">⚠️ ' + quiz + ' Please try again.</div>';
+                } else {
+                    const formattedQuiz = formatQuiz(quiz);
+                    document.getElementById('quizDisplay').innerHTML = formattedQuiz;
+                }
             } else {
                 document.getElementById('quizDisplay').innerHTML = 
                     '<h2>No quiz found. Please generate a new quiz.</h2>';

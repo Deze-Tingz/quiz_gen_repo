@@ -534,4 +534,20 @@
     background-color: #45a049;
 }
  
+.error-message {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ffeeba;
+    margin: 10px 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.error-message::before {
+    content: '⚠️';
+    margin-right: 8px;
+}
+ 
  
